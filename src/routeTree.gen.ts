@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as IndexRouteImport } from './routes/index'
 
+const EventosRoute = EventosRouteImport.update({
+  id: '/eventos',
+  path: '/eventos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CadastroRoute = CadastroRouteImport.update({
   id: '/cadastro',
   path: '/cadastro',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
+  '/eventos': typeof EventosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
+  '/eventos': typeof EventosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
+  '/eventos': typeof EventosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cadastro'
+  fullPaths: '/' | '/cadastro' | '/eventos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cadastro'
-  id: '__root__' | '/' | '/cadastro'
+  to: '/' | '/cadastro' | '/eventos'
+  id: '__root__' | '/' | '/cadastro' | '/eventos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CadastroRoute: typeof CadastroRoute
+  EventosRoute: typeof EventosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/eventos': {
+      id: '/eventos'
+      path: '/eventos'
+      fullPath: '/eventos'
+      preLoaderRoute: typeof EventosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cadastro': {
       id: '/cadastro'
       path: '/cadastro'
@@ -71,7 +88,18 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CadastroRoute: CadastroRoute,
+  EventosRoute: EventosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
