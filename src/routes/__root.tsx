@@ -75,14 +75,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "DevTechWorkshop" },
+      { name: "description", content: "DevTech AI & Mobile Hub is a website for an innovative tech event focused on AI and mobile development." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "DevTechWorkshop" },
+      { property: "og:description", content: "DevTech AI & Mobile Hub is a website for an innovative tech event focused on AI and mobile development." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "DevTechWorkshop" },
+      { name: "twitter:description", content: "DevTech AI & Mobile Hub is a website for an innovative tech event focused on AI and mobile development." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/506cd9a6-490e-4959-bcc9-ded2202655c3/id-preview-0c397459--bad50813-967b-4f63-b3f1-8eaf1316e623.lovable.app-1780440274882.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/506cd9a6-490e-4959-bcc9-ded2202655c3/id-preview-0c397459--bad50813-967b-4f63-b3f1-8eaf1316e623.lovable.app-1780440274882.png" },
     ],
     links: [
       {
