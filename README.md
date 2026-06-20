@@ -1,4 +1,5 @@
 #MODERNS UI LANDPAGES 
+view:https://lovable.dev/projects/bad50813-967b-4f63-b3f1-8eaf1316e623
 This project is made using the lovable plataform.
 What is lovable in my opinion:
 It is super fast end easy to learn how build frontend projecs by wrinting in natural language (prompt)
